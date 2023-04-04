@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.telephony.TelephonyManager
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -30,6 +31,7 @@ object CallDetection {
     private var preferences: SharedPreferences? = null
     lateinit var apiInterface: ApiInterface
     lateinit var apiClient: ApiClient
+    var btnVisibilty = false
     const val BASE_URL = "https://app.watchout.ng/api/"
     //    const val BASE_URL = "http://192.168.1.145:4000/"
     const val GET_RESPONDER_TYPE = "third-party/get-responder-type"
@@ -381,5 +383,48 @@ object CallDetection {
 
         return preferences?.getBoolean(key, false)
     }
+
+    // Using Medical Button Visibility
+
+    fun medicalVisibility(medicalCall:Button, medicalSos:Button) {
+
+        if (!btnVisibilty) {
+            medicalCall.setVisibility(View.VISIBLE)
+            medicalSos.setVisibility(View.VISIBLE)
+        } else {
+            medicalCall.setVisibility(View.GONE)
+            medicalSos.setVisibility(View.GONE)
+        }
+        btnVisibilty = !btnVisibilty
+
+    }
+
+    // Using Accident Button Visibility
+
+    fun accidentVisibility(accidentCall:Button, accidentSos:Button) {
+
+        if (!btnVisibilty) {
+            accidentCall.setVisibility(View.VISIBLE)
+            accidentSos.setVisibility(View.VISIBLE)
+        } else {
+            accidentCall.setVisibility(View.GONE)
+            accidentSos.setVisibility(View.GONE)
+        }
+        btnVisibilty = !btnVisibilty
+    }
+
+    // Using Security Button Visibility
+
+    fun securityVisibility(securityCall:Button) {
+
+        if (!btnVisibilty) {
+            securityCall.setVisibility(View.VISIBLE)
+        } else {
+            securityCall.setVisibility(View.GONE)
+        }
+        btnVisibilty = !btnVisibilty
+
+    }
+
 
 }
