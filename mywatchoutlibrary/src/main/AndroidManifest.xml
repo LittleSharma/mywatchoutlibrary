@@ -8,7 +8,10 @@
 
     <application>
         <activity
-            android:name=".MainActivity"
+            android:name=".Watchout"
+            android:exported="false" />
+        <activity
+            android:name=".MyWatchoutLibrary"
             android:exported="false" />
     </application>
 

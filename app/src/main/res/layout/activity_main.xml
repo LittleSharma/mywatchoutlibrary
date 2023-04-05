@@ -1,135 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/first_activity"
     android:gravity="center"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="REPORT EMERGENCY"
-        android:textSize="20dp"
-        android:layout_marginBottom="20dp"
-        android:textStyle="normal"
-        android:textColor="#0A2F8A"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/medical_btn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:background="#229e1a"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/white"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/medical_call"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginRight="10dp"
-            android:text="Medical Call"
-            android:background="#0A2F8A"
-            android:visibility="gone"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/white"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/medical_sos"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginLeft="10dp"
-            android:text="Medical Sos"
-            android:background="#0A2F8A"
-            android:visibility="gone"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/white"/>
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/accident_btn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:background="#ff0000"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/white"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/accident_call"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginRight="10dp"
-            android:text="Accident Call"
-            android:background="#0A2F8A"
-            android:visibility="gone"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/white"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/accident_sos"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginLeft="10dp"
-            android:text="Accident Sos"
-            android:background="#0A2F8A"
-            android:visibility="gone"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/white"/>
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/secutity_btn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:background="#312b94"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/white"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/security_call"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginRight="10dp"
-            android:text="Security Call"
-            android:background="#0A2F8A"
-            android:visibility="gone"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/white"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/security_sos"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginLeft="10dp"
-            android:text="Security Sos"
-            android:background="#0A2F8A"
-            android:visibility="gone"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/white"/>
-
-    </LinearLayout>
-
+  <Button
+      android:id="@+id/next_btn"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Next Activity"/>
 
 </LinearLayout>
