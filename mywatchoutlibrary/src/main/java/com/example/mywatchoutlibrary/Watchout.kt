@@ -1,42 +1,59 @@
 package com.example.mywatchoutlibrary
 
-import android.annotation.SuppressLint
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.mywatchoutlibrary.databinding.ActivityMainBinding
+import android.widget.Button
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class Watchout() : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var binding: ActivityMainBinding
+    lateinit var medicalBtn1: Button
+    lateinit var accidentBtn1: Button
+    lateinit var securityBtn1: Button
+    lateinit var medicalCall1: Button
+    lateinit var medicalSos1: Button
+    lateinit var accidentCall1: Button
+    lateinit var accidentSos1: Button
+    lateinit var securityCall1: Button
 
-    @SuppressLint("LongLogTag")
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-        binding.medicalBtn.setOnClickListener(this)
-        binding.accidentBtn.setOnClickListener(this)
-        binding.secutityBtn.setOnClickListener(this)
-        binding.medicalCall.setOnClickListener(this)
-        binding.medicalSos.setOnClickListener(this)
-        binding.accidentCall.setOnClickListener(this)
-        binding.accidentSos.setOnClickListener(this)
-        binding.securityCall.setOnClickListener(this)
+        setContentView(R.layout.activity_watchout)
+
+        medicalBtn1 = findViewById(R.id.medical_btn)
+        accidentBtn1 = findViewById(R.id.accident_btn)
+        securityBtn1 = findViewById(R.id.secutity_btn)
+        medicalCall1 = findViewById(R.id.medical_call)
+        medicalSos1 = findViewById(R.id.medical_sos)
+        accidentCall1 = findViewById(R.id.accident_call)
+        accidentSos1 = findViewById(R.id.accident_sos)
+        securityCall1 = findViewById(R.id.security_call)
+
+        medicalBtn1.setOnClickListener(this)
+        accidentBtn1.setOnClickListener(this)
+        securityBtn1.setOnClickListener(this)
+        medicalCall1.setOnClickListener(this)
+        medicalSos1.setOnClickListener(this)
+        accidentCall1.setOnClickListener(this)
+        accidentSos1.setOnClickListener(this)
+        securityCall1.setOnClickListener(this)
         supportActionBar?.hide()
         CallDetection.emergencyUiDetails(
             this,
             "1221117105526941",
-            binding.medicalBtn,
-            binding.accidentBtn,
-            binding.secutityBtn
+            medicalBtn1,
+            accidentBtn1,
+            securityBtn1
         )
+
     }
 
     override fun onClick(v: View?) {
+
         if (v?.id == R.id.medical_btn) {
 
-            CallDetection.medicalVisibility(binding.medicalCall, binding.medicalSos)
+            CallDetection.medicalVisibility(medicalCall1, medicalSos1)
 
         }
         if (v?.id == R.id.medical_call) {
@@ -90,8 +107,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             )
         }
         if (v?.id == R.id.accident_btn) {
-            CallDetection.accidentVisibility(binding.accidentCall, binding.accidentSos)
-
+            CallDetection.accidentVisibility(accidentCall1, accidentSos1)
         }
         if (v?.id == R.id.accident_call) {
             CallDetection.medicalAccidentCallApi(
@@ -144,7 +160,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             )
         }
         if (v?.id == R.id.secutity_btn) {
-            CallDetection.securityVisibility(binding.securityCall)
+            CallDetection.securityVisibility(securityCall1)
         }
         if (v?.id == R.id.security_call) {
             CallDetection.securityCallApi(
@@ -168,7 +184,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 "2014",
                 "1FADP3J27EL153248",
                 "Ambulance"
+
             )
         }
+
+
     }
 }
