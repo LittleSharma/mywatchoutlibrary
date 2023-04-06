@@ -2,16 +2,20 @@ package com.example.mywatchoutlibrary
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.telephony.TelephonyManager
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.Window
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -49,6 +53,7 @@ object CallDetection {
     const val SharedprefernceName = "UserData"
     const val MEDICAL_CLICK = "medClick"
     const val ACCIDENT_CLICK = "accClick"
+    lateinit var dialog: Dialog;
 
     // Calling This Method in onRecieve Method of Broadcast Reciever
     // Give (contaxt , intent) 2 Argument of This Method
@@ -100,6 +105,7 @@ object CallDetection {
     // Using this Function for Display All Watchout Groups
 
     fun emergencyUiDetails(context: Context, authKey : String, medicalBtn:Button, accidentBtn:Button, securityBtn:Button) {
+        show(context)
         apiClient = ApiClient()
         apiInterface = apiClient.getClient(BASE_URL)!!.create(ApiInterface::class.java)
         var call: Call<ResponderListDao?>? = apiInterface.ResponderList(authKey)
@@ -116,6 +122,7 @@ object CallDetection {
                     setStringVale(MEDICAL_GROUP_ID, response.body()!!.data!![0]._id!!, context)
                     setStringVale(ACCIDENT_GROUP_ID, response.body()!!.data!![1]._id!!, context)
                     setStringVale(SECURITY_GROUP_ID, response.body()!!.data!![2]._id!!, context)
+                    dismiss()
                 } else Log.d("Error Occure-->>", "Response Not Found")
             }
 
@@ -131,6 +138,7 @@ object CallDetection {
     fun medicalAccidentCallApi(context: Context, CallIncomingType: String, groupId: String, authKey: String, tripBy:String, latitude:String,
     userType:String, firstName:String, lastName:String, gender:String, phone:String, email:String, longitude:String, caseType:String, vehMake:String,
     vehicleNumber:String, vehicleModel:String, vehYear:String, vinNum:String, vehicleType:String) {
+        show(context)
         apiClient = ApiClient()
         apiInterface = apiClient.getClient(BASE_URL)!!.create(ApiInterface::class.java)
         var call: Call<FindResponderResponse?>? = apiInterface.FindRespondercCall(
@@ -181,6 +189,7 @@ object CallDetection {
                     else { Toast.makeText(context, "Responder Not Found", Toast.LENGTH_SHORT).show() }
                 }
                 else { Toast.makeText(context, response.body()!!.message, Toast.LENGTH_SHORT).show() }
+                dismiss()
             }
 
             override fun onFailure(call: Call<FindResponderResponse?>, t: Throwable) {
@@ -195,6 +204,7 @@ object CallDetection {
     fun securityCallApi(context: Context, CallIncomingType: String, groupId: String, authKey: String, tripBy:String, latitude:String,
                         userType:String, firstName:String, lastName:String, gender:String, phone:String, email:String, longitude:String, caseType:String, vehMake:String,
                         vehicleNumber:String, vehicleModel:String, vehYear:String, vinNum:String, vehicleType:String ) {
+        show(context)
         apiClient = ApiClient()
         apiInterface = apiClient.getClient(BASE_URL)!!.create(ApiInterface::class.java)
         var call: Call<FindResponderResponse?>? = apiInterface.FindRespondercCall(
@@ -222,7 +232,9 @@ object CallDetection {
                     } else {
                         Toast.makeText(context, "Security Number Not Found", Toast.LENGTH_SHORT).show()
                     }
-                } else {
+                    dismiss()
+                }
+                else {
                     Toast.makeText(context, "Security Number Not Found", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -239,6 +251,7 @@ object CallDetection {
     fun sosApi(context: Context, CallIncomingType: String, groupId: String, authKey: String, tripBy:String, latitude:String,
                userType:String, firstName:String, lastName:String, gender:String, phone:String, email:String, longitude:String, caseType:String, vehMake:String,
                vehicleNumber:String, vehicleModel:String, vehYear:String, vinNum:String, vehicleType:String ) {
+        show(context)
         apiClient = ApiClient()
         apiInterface = apiClient.getClient(BASE_URL)!!.create(ApiInterface::class.java)
         var call: Call<FindResponderSosResponse?>? = apiInterface.FindResponderSos(
@@ -261,6 +274,7 @@ object CallDetection {
                 Log.d("Status", response.body()!!.status!!)
                 Log.d("Message", response.body()!!.message!!)
                 Toast.makeText(context, response.body()!!.message, Toast.LENGTH_SHORT).show()
+                dismiss()
             }
 
             override fun onFailure(call: Call<FindResponderSosResponse?>, t: Throwable) {
@@ -425,6 +439,29 @@ object CallDetection {
         btnVisibilty = !btnVisibilty
 
     }
+
+    // Using Progress Bar Show
+
+    fun show(cntx:Context)
+    {
+        dialog = Dialog(cntx)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.progressbar)
+
+
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
+    }
+
+    // Using Progress Bar Dismiss
+
+    fun dismiss()
+    {
+        if(dialog.isShowing)
+            dialog.dismiss()
+    }
+
 
 
 }

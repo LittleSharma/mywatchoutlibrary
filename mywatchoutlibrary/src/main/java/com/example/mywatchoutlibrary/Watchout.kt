@@ -1,13 +1,12 @@
 package com.example.mywatchoutlibrary
 
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 
 class Watchout : AppCompatActivity(), View.OnClickListener {
@@ -97,7 +96,7 @@ class Watchout : AppCompatActivity(), View.OnClickListener {
                 CallDetection.setSBoolenVale("medClick", true, this)
             }
             else {
-                CallDetection.showToast(this, "Not Valid CaseIncomingType")
+                Toast.makeText(this, "Not Valid CaseIncoming Type", Toast.LENGTH_SHORT).show()
             }
         }
         if (v?.id == R.id.medical_sos) {
@@ -128,7 +127,7 @@ class Watchout : AppCompatActivity(), View.OnClickListener {
                 )
             }
             else {
-                CallDetection.showToast(this, "Not Valid CaseIncomingType")
+                Toast.makeText(this, "Not Valid CaseIncoming Type", Toast.LENGTH_SHORT).show()
             }
         }
         if (v?.id == R.id.accident_btn) {
@@ -164,7 +163,7 @@ class Watchout : AppCompatActivity(), View.OnClickListener {
                 CallDetection.setSBoolenVale(CallDetection.ACCIDENT_CLICK, true, this)
             }
             else {
-                CallDetection.showToast(this, "Not Valid CaseIncomingType")
+                Toast.makeText(this, "Not Valid CaseIncoming Type", Toast.LENGTH_SHORT).show()
             }
         }
         if (v?.id == R.id.accident_sos) {
@@ -195,7 +194,7 @@ class Watchout : AppCompatActivity(), View.OnClickListener {
                 )
             }
             else {
-                CallDetection.showToast(this, "Not Valid CaseIncomingType")
+                Toast.makeText(this, "Not Valid CaseIncoming Type", Toast.LENGTH_SHORT).show()
             }
         }
         if (v?.id == R.id.secutity_btn) {
@@ -230,7 +229,7 @@ class Watchout : AppCompatActivity(), View.OnClickListener {
                 )
             }
             else {
-                CallDetection.showToast(this, "Not Valid CaseIncomingType")
+                Toast.makeText(this, "Not Valid CaseIncoming Type", Toast.LENGTH_SHORT).show()
             }
         }
 

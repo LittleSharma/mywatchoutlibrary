@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.hide()
+
         nextButton = findViewById(R.id.next_btn)
 
         userDetails = UserDetails(UserUser("Shweta@mailinator.com","Shweta", "kumari", "85856895885","Female"),
