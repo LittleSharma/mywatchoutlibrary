@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.117221661621258" />
         <entry key="app/src/main/res/layout/activity_abc.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/activity_ccc.xml" value="0.33697916666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33697916666666666" />
         <entry key="mywatchoutlibrary/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="mywatchoutlibrary/src/main/res/layout/activity_watchout.xml" value="0.33697916666666666" />
+        <entry key="mywatchoutlibrary/src/main/res/layout/progressbar.xml" value="0.3359375" />
       </map>
     </option>
   </component>
