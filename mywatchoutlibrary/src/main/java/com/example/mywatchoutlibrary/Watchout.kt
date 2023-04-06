@@ -1,12 +1,15 @@
 package com.example.mywatchoutlibrary
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import com.google.gson.Gson
 
-class Watchout() : AppCompatActivity(), View.OnClickListener {
+class Watchout : AppCompatActivity(), View.OnClickListener {
 
     lateinit var medicalBtn1: Button
     lateinit var accidentBtn1: Button
@@ -16,10 +19,17 @@ class Watchout() : AppCompatActivity(), View.OnClickListener {
     lateinit var accidentCall1: Button
     lateinit var accidentSos1: Button
     lateinit var securityCall1: Button
+    lateinit var userRecieveData : UserDetails
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_watchout)
+
+        val json = intent.getStringExtra("user_details")
+        Log.d("Your_Recieve_Data", json!!)
+        val gson = Gson()
+        userRecieveData = gson.fromJson(json, UserDetails::class.java)
+        Log.d("Your_Recieve_Data", userRecieveData.toString())
 
         medicalBtn1 = findViewById(R.id.medical_btn)
         accidentBtn1 = findViewById(R.id.accident_btn)
@@ -41,7 +51,7 @@ class Watchout() : AppCompatActivity(), View.OnClickListener {
         supportActionBar?.hide()
         CallDetection.emergencyUiDetails(
             this,
-            "1221117105526941",
+            userRecieveData.userAuthkey.toString(),
             medicalBtn1,
             accidentBtn1,
             securityBtn1
@@ -59,25 +69,25 @@ class Watchout() : AppCompatActivity(), View.OnClickListener {
         if (v?.id == R.id.medical_call) {
             CallDetection.medicalAccidentCallApi(
                 this,
-                "Audio",
+                userRecieveData.userCaseIncomingType.toString(),
                 CallDetection.getStringValue(CallDetection.MEDICAL_GROUP_ID, this)!!,
-                "1221117105526941",
-                "ola",
-                "75.7873",
-                "p",
-                "Shweta",
-                "kumari",
-                "Female",
-                "85856895885",
-                "Shweta@mailinator.com",
-                "26.9124",
-                "EmergencyMessage",
-                "Ford",
-                "RJ16CH7898",
-                "Focus",
-                "2014",
-                "1FADP3J27EL153248",
-                "Ambulance"
+                userRecieveData.userAuthkey.toString(),
+                userRecieveData.userTripBy.toString(),
+                userRecieveData.userLatitude.toString(),
+                userRecieveData.userUserType.toString(),
+                userRecieveData.userUser?.userFirstName.toString(),
+                userRecieveData.userUser?.userLastName.toString(),
+                userRecieveData.userUser?.userGender.toString(),
+                userRecieveData.userUser?.userPhone.toString(),
+                userRecieveData.userUser?.userEmail.toString(),
+                userRecieveData.userLongitude.toString(),
+                userRecieveData.userCaseType.toString(),
+                userRecieveData.userVehicle?.userVehMake.toString(),
+                userRecieveData.userVehicle?.userVehicleNumber.toString(),
+                userRecieveData.userVehicle?.userVehicleModel.toString(),
+                userRecieveData.userVehicle?.userVehYear.toString(),
+                userRecieveData.userVehicle?.userVinNum.toString(),
+                userRecieveData.userVehicle?.userVehicleType.toString()
             )
             CallDetection.setSBoolenVale("accClick", false, this)
             CallDetection.setSBoolenVale("medClick", true, this)
@@ -85,25 +95,25 @@ class Watchout() : AppCompatActivity(), View.OnClickListener {
         if (v?.id == R.id.medical_sos) {
             CallDetection.sosApi(
                 this,
-                "SOS",
+                userRecieveData.userCaseIncomingType.toString(),
                 CallDetection.getStringValue(CallDetection.MEDICAL_GROUP_ID, this)!!,
-                "1221117105526941",
-                "ola",
-                "75.7873",
-                "p",
-                "Shweta",
-                "kumari",
-                "Female",
-                "85856895885",
-                "Shweta@mailinator.com",
-                "26.9124",
-                "EmergencyMessage",
-                "Ford",
-                "RJ16CH7898",
-                "Focus",
-                "2014",
-                "1FADP3J27EL153248",
-                "Ambulance"
+                userRecieveData.userAuthkey.toString(),
+                userRecieveData.userTripBy.toString(),
+                userRecieveData.userLatitude.toString(),
+                userRecieveData.userUserType.toString(),
+                userRecieveData.userUser?.userFirstName.toString(),
+                userRecieveData.userUser?.userLastName.toString(),
+                userRecieveData.userUser?.userGender.toString(),
+                userRecieveData.userUser?.userPhone.toString(),
+                userRecieveData.userUser?.userEmail.toString(),
+                userRecieveData.userLongitude.toString(),
+                userRecieveData.userCaseType.toString(),
+                userRecieveData.userVehicle?.userVehMake.toString(),
+                userRecieveData.userVehicle?.userVehicleNumber.toString(),
+                userRecieveData.userVehicle?.userVehicleModel.toString(),
+                userRecieveData.userVehicle?.userVehYear.toString(),
+                userRecieveData.userVehicle?.userVinNum.toString(),
+                userRecieveData.userVehicle?.userVehicleType.toString()
             )
         }
         if (v?.id == R.id.accident_btn) {
@@ -112,25 +122,25 @@ class Watchout() : AppCompatActivity(), View.OnClickListener {
         if (v?.id == R.id.accident_call) {
             CallDetection.medicalAccidentCallApi(
                 this,
-                "Audio",
+                userRecieveData.userCaseIncomingType.toString(),
                 CallDetection.getStringValue(CallDetection.ACCIDENT_GROUP_ID, this)!!,
-                "1221117105526941",
-                "ola",
-                "75.7873",
-                "p",
-                "Shweta",
-                "kumari",
-                "Female",
-                "85856895885",
-                "Shweta@mailinator.com",
-                "26.9124",
-                "EmergencyMessage",
-                "Ford",
-                "RJ16CH7898",
-                "Focus",
-                "2014",
-                "1FADP3J27EL153248",
-                "Ambulance"
+                userRecieveData.userAuthkey.toString(),
+                userRecieveData.userTripBy.toString(),
+                userRecieveData.userLatitude.toString(),
+                userRecieveData.userUserType.toString(),
+                userRecieveData.userUser?.userFirstName.toString(),
+                userRecieveData.userUser?.userLastName.toString(),
+                userRecieveData.userUser?.userGender.toString(),
+                userRecieveData.userUser?.userPhone.toString(),
+                userRecieveData.userUser?.userEmail.toString(),
+                userRecieveData.userLongitude.toString(),
+                userRecieveData.userCaseType.toString(),
+                userRecieveData.userVehicle?.userVehMake.toString(),
+                userRecieveData.userVehicle?.userVehicleNumber.toString(),
+                userRecieveData.userVehicle?.userVehicleModel.toString(),
+                userRecieveData.userVehicle?.userVehYear.toString(),
+                userRecieveData.userVehicle?.userVinNum.toString(),
+                userRecieveData.userVehicle?.userVehicleType.toString()
             )
             CallDetection.setSBoolenVale(CallDetection.MEDICAL_CLICK, false, this)
             CallDetection.setSBoolenVale(CallDetection.ACCIDENT_CLICK, true, this)
@@ -138,25 +148,25 @@ class Watchout() : AppCompatActivity(), View.OnClickListener {
         if (v?.id == R.id.accident_sos) {
             CallDetection.sosApi(
                 this,
-                "SOS",
+                userRecieveData.userCaseIncomingType.toString(),
                 CallDetection.getStringValue(CallDetection.ACCIDENT_GROUP_ID, this)!!,
-                "1221117105526941",
-                "ola",
-                "75.7873",
-                "p",
-                "Shweta",
-                "kumari",
-                "Female",
-                "85856895885",
-                "Shweta@mailinator.com",
-                "26.9124",
-                "EmergencyMessage",
-                "Ford",
-                "RJ16CH7898",
-                "Focus",
-                "2014",
-                "1FADP3J27EL153248",
-                "Ambulance"
+                userRecieveData.userAuthkey.toString(),
+                userRecieveData.userTripBy.toString(),
+                userRecieveData.userLatitude.toString(),
+                userRecieveData.userUserType.toString(),
+                userRecieveData.userUser?.userFirstName.toString(),
+                userRecieveData.userUser?.userLastName.toString(),
+                userRecieveData.userUser?.userGender.toString(),
+                userRecieveData.userUser?.userPhone.toString(),
+                userRecieveData.userUser?.userEmail.toString(),
+                userRecieveData.userLongitude.toString(),
+                userRecieveData.userCaseType.toString(),
+                userRecieveData.userVehicle?.userVehMake.toString(),
+                userRecieveData.userVehicle?.userVehicleNumber.toString(),
+                userRecieveData.userVehicle?.userVehicleModel.toString(),
+                userRecieveData.userVehicle?.userVehYear.toString(),
+                userRecieveData.userVehicle?.userVinNum.toString(),
+                userRecieveData.userVehicle?.userVehicleType.toString()
             )
         }
         if (v?.id == R.id.secutity_btn) {
@@ -165,25 +175,25 @@ class Watchout() : AppCompatActivity(), View.OnClickListener {
         if (v?.id == R.id.security_call) {
             CallDetection.securityCallApi(
                 this,
-                "Audio",
+                userRecieveData.userCaseIncomingType.toString(),
                 CallDetection.getStringValue(CallDetection.SECURITY_GROUP_ID, this)!!,
-                "1221117105526941",
-                "ola",
-                "75.7873",
-                "p",
-                "Shweta",
-                "kumari",
-                "Female",
-                "85856895885",
-                "Shweta@mailinator.com",
-                "26.9124",
-                "EmergencyMessage",
-                "Ford",
-                "RJ16CH7898",
-                "Focus",
-                "2014",
-                "1FADP3J27EL153248",
-                "Ambulance"
+                userRecieveData.userAuthkey.toString(),
+                userRecieveData.userTripBy.toString(),
+                userRecieveData.userLatitude.toString(),
+                userRecieveData.userUserType.toString(),
+                userRecieveData.userUser?.userFirstName.toString(),
+                userRecieveData.userUser?.userLastName.toString(),
+                userRecieveData.userUser?.userGender.toString(),
+                userRecieveData.userUser?.userPhone.toString(),
+                userRecieveData.userUser?.userEmail.toString(),
+                userRecieveData.userLongitude.toString(),
+                userRecieveData.userCaseType.toString(),
+                userRecieveData.userVehicle?.userVehMake.toString(),
+                userRecieveData.userVehicle?.userVehicleNumber.toString(),
+                userRecieveData.userVehicle?.userVehicleModel.toString(),
+                userRecieveData.userVehicle?.userVehYear.toString(),
+                userRecieveData.userVehicle?.userVinNum.toString(),
+                userRecieveData.userVehicle?.userVehicleType.toString()
 
             )
         }
