@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import com.google.gson.Gson
 
 class Watchout : AppCompatActivity(), View.OnClickListener {
@@ -67,135 +68,170 @@ class Watchout : AppCompatActivity(), View.OnClickListener {
 
         }
         if (v?.id == R.id.medical_call) {
-            CallDetection.medicalAccidentCallApi(
-                this,
-                userRecieveData.userCaseIncomingType.toString(),
-                CallDetection.getStringValue(CallDetection.MEDICAL_GROUP_ID, this)!!,
-                userRecieveData.userAuthkey.toString(),
-                userRecieveData.userTripBy.toString(),
-                userRecieveData.userLatitude.toString(),
-                userRecieveData.userUserType.toString(),
-                userRecieveData.userUser?.userFirstName.toString(),
-                userRecieveData.userUser?.userLastName.toString(),
-                userRecieveData.userUser?.userGender.toString(),
-                userRecieveData.userUser?.userPhone.toString(),
-                userRecieveData.userUser?.userEmail.toString(),
-                userRecieveData.userLongitude.toString(),
-                userRecieveData.userCaseType.toString(),
-                userRecieveData.userVehicle?.userVehMake.toString(),
-                userRecieveData.userVehicle?.userVehicleNumber.toString(),
-                userRecieveData.userVehicle?.userVehicleModel.toString(),
-                userRecieveData.userVehicle?.userVehYear.toString(),
-                userRecieveData.userVehicle?.userVinNum.toString(),
-                userRecieveData.userVehicle?.userVehicleType.toString()
-            )
-            CallDetection.setSBoolenVale("accClick", false, this)
-            CallDetection.setSBoolenVale("medClick", true, this)
+
+            if (userRecieveData.userCaseIncomingType == "Audio") {
+
+                CallDetection.medicalAccidentCallApi(
+                    this,
+                    userRecieveData.userCaseIncomingType.toString(),
+                    CallDetection.getStringValue(CallDetection.MEDICAL_GROUP_ID, this)!!,
+                    userRecieveData.userAuthkey.toString(),
+                    userRecieveData.userTripBy.toString(),
+                    userRecieveData.userLatitude.toString(),
+                    userRecieveData.userUserType.toString(),
+                    userRecieveData.userUser?.userFirstName.toString(),
+                    userRecieveData.userUser?.userLastName.toString(),
+                    userRecieveData.userUser?.userGender.toString(),
+                    userRecieveData.userUser?.userPhone.toString(),
+                    userRecieveData.userUser?.userEmail.toString(),
+                    userRecieveData.userLongitude.toString(),
+                    userRecieveData.userCaseType.toString(),
+                    userRecieveData.userVehicle?.userVehMake.toString(),
+                    userRecieveData.userVehicle?.userVehicleNumber.toString(),
+                    userRecieveData.userVehicle?.userVehicleModel.toString(),
+                    userRecieveData.userVehicle?.userVehYear.toString(),
+                    userRecieveData.userVehicle?.userVinNum.toString(),
+                    userRecieveData.userVehicle?.userVehicleType.toString()
+                )
+                CallDetection.setSBoolenVale("accClick", false, this)
+                CallDetection.setSBoolenVale("medClick", true, this)
+            }
+            else {
+                CallDetection.showToast(this, "Not Valid CaseIncomingType")
+            }
         }
         if (v?.id == R.id.medical_sos) {
-            CallDetection.sosApi(
-                this,
-                userRecieveData.userCaseIncomingType.toString(),
-                CallDetection.getStringValue(CallDetection.MEDICAL_GROUP_ID, this)!!,
-                userRecieveData.userAuthkey.toString(),
-                userRecieveData.userTripBy.toString(),
-                userRecieveData.userLatitude.toString(),
-                userRecieveData.userUserType.toString(),
-                userRecieveData.userUser?.userFirstName.toString(),
-                userRecieveData.userUser?.userLastName.toString(),
-                userRecieveData.userUser?.userGender.toString(),
-                userRecieveData.userUser?.userPhone.toString(),
-                userRecieveData.userUser?.userEmail.toString(),
-                userRecieveData.userLongitude.toString(),
-                userRecieveData.userCaseType.toString(),
-                userRecieveData.userVehicle?.userVehMake.toString(),
-                userRecieveData.userVehicle?.userVehicleNumber.toString(),
-                userRecieveData.userVehicle?.userVehicleModel.toString(),
-                userRecieveData.userVehicle?.userVehYear.toString(),
-                userRecieveData.userVehicle?.userVinNum.toString(),
-                userRecieveData.userVehicle?.userVehicleType.toString()
-            )
+
+            if (userRecieveData.userCaseIncomingType == "SOS") {
+
+                CallDetection.sosApi(
+                    this,
+                    userRecieveData.userCaseIncomingType.toString(),
+                    CallDetection.getStringValue(CallDetection.MEDICAL_GROUP_ID, this)!!,
+                    userRecieveData.userAuthkey.toString(),
+                    userRecieveData.userTripBy.toString(),
+                    userRecieveData.userLatitude.toString(),
+                    userRecieveData.userUserType.toString(),
+                    userRecieveData.userUser?.userFirstName.toString(),
+                    userRecieveData.userUser?.userLastName.toString(),
+                    userRecieveData.userUser?.userGender.toString(),
+                    userRecieveData.userUser?.userPhone.toString(),
+                    userRecieveData.userUser?.userEmail.toString(),
+                    userRecieveData.userLongitude.toString(),
+                    userRecieveData.userCaseType.toString(),
+                    userRecieveData.userVehicle?.userVehMake.toString(),
+                    userRecieveData.userVehicle?.userVehicleNumber.toString(),
+                    userRecieveData.userVehicle?.userVehicleModel.toString(),
+                    userRecieveData.userVehicle?.userVehYear.toString(),
+                    userRecieveData.userVehicle?.userVinNum.toString(),
+                    userRecieveData.userVehicle?.userVehicleType.toString()
+                )
+            }
+            else {
+                CallDetection.showToast(this, "Not Valid CaseIncomingType")
+            }
         }
         if (v?.id == R.id.accident_btn) {
             CallDetection.accidentVisibility(accidentCall1, accidentSos1)
         }
         if (v?.id == R.id.accident_call) {
-            CallDetection.medicalAccidentCallApi(
-                this,
-                userRecieveData.userCaseIncomingType.toString(),
-                CallDetection.getStringValue(CallDetection.ACCIDENT_GROUP_ID, this)!!,
-                userRecieveData.userAuthkey.toString(),
-                userRecieveData.userTripBy.toString(),
-                userRecieveData.userLatitude.toString(),
-                userRecieveData.userUserType.toString(),
-                userRecieveData.userUser?.userFirstName.toString(),
-                userRecieveData.userUser?.userLastName.toString(),
-                userRecieveData.userUser?.userGender.toString(),
-                userRecieveData.userUser?.userPhone.toString(),
-                userRecieveData.userUser?.userEmail.toString(),
-                userRecieveData.userLongitude.toString(),
-                userRecieveData.userCaseType.toString(),
-                userRecieveData.userVehicle?.userVehMake.toString(),
-                userRecieveData.userVehicle?.userVehicleNumber.toString(),
-                userRecieveData.userVehicle?.userVehicleModel.toString(),
-                userRecieveData.userVehicle?.userVehYear.toString(),
-                userRecieveData.userVehicle?.userVinNum.toString(),
-                userRecieveData.userVehicle?.userVehicleType.toString()
-            )
-            CallDetection.setSBoolenVale(CallDetection.MEDICAL_CLICK, false, this)
-            CallDetection.setSBoolenVale(CallDetection.ACCIDENT_CLICK, true, this)
+
+            if (userRecieveData.userCaseIncomingType == "Audio") {
+
+                CallDetection.medicalAccidentCallApi(
+                    this,
+                    userRecieveData.userCaseIncomingType.toString(),
+                    CallDetection.getStringValue(CallDetection.ACCIDENT_GROUP_ID, this)!!,
+                    userRecieveData.userAuthkey.toString(),
+                    userRecieveData.userTripBy.toString(),
+                    userRecieveData.userLatitude.toString(),
+                    userRecieveData.userUserType.toString(),
+                    userRecieveData.userUser?.userFirstName.toString(),
+                    userRecieveData.userUser?.userLastName.toString(),
+                    userRecieveData.userUser?.userGender.toString(),
+                    userRecieveData.userUser?.userPhone.toString(),
+                    userRecieveData.userUser?.userEmail.toString(),
+                    userRecieveData.userLongitude.toString(),
+                    userRecieveData.userCaseType.toString(),
+                    userRecieveData.userVehicle?.userVehMake.toString(),
+                    userRecieveData.userVehicle?.userVehicleNumber.toString(),
+                    userRecieveData.userVehicle?.userVehicleModel.toString(),
+                    userRecieveData.userVehicle?.userVehYear.toString(),
+                    userRecieveData.userVehicle?.userVinNum.toString(),
+                    userRecieveData.userVehicle?.userVehicleType.toString()
+                )
+                CallDetection.setSBoolenVale(CallDetection.MEDICAL_CLICK, false, this)
+                CallDetection.setSBoolenVale(CallDetection.ACCIDENT_CLICK, true, this)
+            }
+            else {
+                CallDetection.showToast(this, "Not Valid CaseIncomingType")
+            }
         }
         if (v?.id == R.id.accident_sos) {
-            CallDetection.sosApi(
-                this,
-                userRecieveData.userCaseIncomingType.toString(),
-                CallDetection.getStringValue(CallDetection.ACCIDENT_GROUP_ID, this)!!,
-                userRecieveData.userAuthkey.toString(),
-                userRecieveData.userTripBy.toString(),
-                userRecieveData.userLatitude.toString(),
-                userRecieveData.userUserType.toString(),
-                userRecieveData.userUser?.userFirstName.toString(),
-                userRecieveData.userUser?.userLastName.toString(),
-                userRecieveData.userUser?.userGender.toString(),
-                userRecieveData.userUser?.userPhone.toString(),
-                userRecieveData.userUser?.userEmail.toString(),
-                userRecieveData.userLongitude.toString(),
-                userRecieveData.userCaseType.toString(),
-                userRecieveData.userVehicle?.userVehMake.toString(),
-                userRecieveData.userVehicle?.userVehicleNumber.toString(),
-                userRecieveData.userVehicle?.userVehicleModel.toString(),
-                userRecieveData.userVehicle?.userVehYear.toString(),
-                userRecieveData.userVehicle?.userVinNum.toString(),
-                userRecieveData.userVehicle?.userVehicleType.toString()
-            )
+
+            if (userRecieveData.userCaseIncomingType == "SOS") {
+
+                CallDetection.sosApi(
+                    this,
+                    userRecieveData.userCaseIncomingType.toString(),
+                    CallDetection.getStringValue(CallDetection.ACCIDENT_GROUP_ID, this)!!,
+                    userRecieveData.userAuthkey.toString(),
+                    userRecieveData.userTripBy.toString(),
+                    userRecieveData.userLatitude.toString(),
+                    userRecieveData.userUserType.toString(),
+                    userRecieveData.userUser?.userFirstName.toString(),
+                    userRecieveData.userUser?.userLastName.toString(),
+                    userRecieveData.userUser?.userGender.toString(),
+                    userRecieveData.userUser?.userPhone.toString(),
+                    userRecieveData.userUser?.userEmail.toString(),
+                    userRecieveData.userLongitude.toString(),
+                    userRecieveData.userCaseType.toString(),
+                    userRecieveData.userVehicle?.userVehMake.toString(),
+                    userRecieveData.userVehicle?.userVehicleNumber.toString(),
+                    userRecieveData.userVehicle?.userVehicleModel.toString(),
+                    userRecieveData.userVehicle?.userVehYear.toString(),
+                    userRecieveData.userVehicle?.userVinNum.toString(),
+                    userRecieveData.userVehicle?.userVehicleType.toString()
+                )
+            }
+            else {
+                CallDetection.showToast(this, "Not Valid CaseIncomingType")
+            }
         }
         if (v?.id == R.id.secutity_btn) {
             CallDetection.securityVisibility(securityCall1)
         }
         if (v?.id == R.id.security_call) {
-            CallDetection.securityCallApi(
-                this,
-                userRecieveData.userCaseIncomingType.toString(),
-                CallDetection.getStringValue(CallDetection.SECURITY_GROUP_ID, this)!!,
-                userRecieveData.userAuthkey.toString(),
-                userRecieveData.userTripBy.toString(),
-                userRecieveData.userLatitude.toString(),
-                userRecieveData.userUserType.toString(),
-                userRecieveData.userUser?.userFirstName.toString(),
-                userRecieveData.userUser?.userLastName.toString(),
-                userRecieveData.userUser?.userGender.toString(),
-                userRecieveData.userUser?.userPhone.toString(),
-                userRecieveData.userUser?.userEmail.toString(),
-                userRecieveData.userLongitude.toString(),
-                userRecieveData.userCaseType.toString(),
-                userRecieveData.userVehicle?.userVehMake.toString(),
-                userRecieveData.userVehicle?.userVehicleNumber.toString(),
-                userRecieveData.userVehicle?.userVehicleModel.toString(),
-                userRecieveData.userVehicle?.userVehYear.toString(),
-                userRecieveData.userVehicle?.userVinNum.toString(),
-                userRecieveData.userVehicle?.userVehicleType.toString()
 
-            )
+            if (userRecieveData.userCaseIncomingType == "Audio") {
+
+                CallDetection.securityCallApi(
+                    this,
+                    userRecieveData.userCaseIncomingType.toString(),
+                    CallDetection.getStringValue(CallDetection.SECURITY_GROUP_ID, this)!!,
+                    userRecieveData.userAuthkey.toString(),
+                    userRecieveData.userTripBy.toString(),
+                    userRecieveData.userLatitude.toString(),
+                    userRecieveData.userUserType.toString(),
+                    userRecieveData.userUser?.userFirstName.toString(),
+                    userRecieveData.userUser?.userLastName.toString(),
+                    userRecieveData.userUser?.userGender.toString(),
+                    userRecieveData.userUser?.userPhone.toString(),
+                    userRecieveData.userUser?.userEmail.toString(),
+                    userRecieveData.userLongitude.toString(),
+                    userRecieveData.userCaseType.toString(),
+                    userRecieveData.userVehicle?.userVehMake.toString(),
+                    userRecieveData.userVehicle?.userVehicleNumber.toString(),
+                    userRecieveData.userVehicle?.userVehicleModel.toString(),
+                    userRecieveData.userVehicle?.userVehYear.toString(),
+                    userRecieveData.userVehicle?.userVinNum.toString(),
+                    userRecieveData.userVehicle?.userVehicleType.toString()
+
+                )
+            }
+            else {
+                CallDetection.showToast(this, "Not Valid CaseIncomingType")
+            }
         }
 
 
