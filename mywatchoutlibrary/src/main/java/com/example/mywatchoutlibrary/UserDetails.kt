@@ -28,8 +28,6 @@ data class UserDetails(
 	@field:SerializedName("vehicle")
 	val userVehicle: UserVehicle? = null,
 
-	@field:SerializedName("caseIncomingType")
-	val userCaseIncomingType: String? = null,
 )
 
 data class UserUser(
