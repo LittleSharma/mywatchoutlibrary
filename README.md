@@ -18,6 +18,6 @@ Step 2. Add the dependency
 
 	dependencies {
   
-	        implementation 'com.github.LittleSharma:mywatchoutlibrary:1.0.6'    
+	        implementation 'com.github.LittleSharma:mywatchoutlibrary:1.0.7'    
   }
   
