@@ -40,13 +40,13 @@ class MainActivity : AppCompatActivity() {
                 "  \"latitude\": 75.7873,\n" +
                 "  \"tripBy\": \"ola\",\n" +
                 "  \"userType\": \"p\",\n" +
-                "  \"caseIncomingType\":\"Audio\",\n" +
+                "  \"caseType\": \"EmergencyMessage\",\n" +
                 "  \"user\": {\n" +
-                "    \"firstName\": \"vicky\",\n" +
-                "    \"lastName\": \"kumar\",\n" +
-                "    \"email\": \"vicky3i@gmail.com\",\n" +
+                "    \"firstName\": \"Shweta\",\n" +
+                "    \"lastName\": \"kumari\",\n" +
+                "    \"email\": \"Shweta@mailinator.com\",\n" +
                 "    \"phone\": \"85856895885\",\n" +
-                "    \"gender\": \"Male\"\n" +
+                "    \"gender\": \"Female\"\n" +
                 "    \n" +
                 "  },\n" +
                 "  \"vehicle\": {\n" +
