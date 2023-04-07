@@ -31,6 +31,14 @@ class Watchout : AppCompatActivity(), View.OnClickListener {
         userRecieveData = gson.fromJson(json, UserDetails::class.java)
         Log.d("Your_Receive_Data", userRecieveData.toString())
 
+        Log.d("user AuthKey", userRecieveData.userAuthkey.toString())
+        Log.d("user latitude", userRecieveData.userLatitude.toString())
+        Log.d("user longitude", userRecieveData.userLongitude.toString())
+
+        CallDetection.setStringVale(CallDetection.AUTH_KEY,userRecieveData.userAuthkey.toString(), this)
+        CallDetection.setStringVale(CallDetection.LATITUDE,userRecieveData.userLatitude.toString(), this)
+        CallDetection.setStringVale(CallDetection.LONGITUDE,userRecieveData.userLongitude.toString(), this)
+
         medicalBtn1 = findViewById(R.id.medical_btn)
         accidentBtn1 = findViewById(R.id.accident_btn)
         securityBtn1 = findViewById(R.id.secutity_btn)
@@ -92,7 +100,8 @@ class Watchout : AppCompatActivity(), View.OnClickListener {
                 userRecieveData.userVehicle?.userVinNum.toString(),
                 userRecieveData.userVehicle?.userVehicleType.toString()
             )
-            CallDetection.setSBoolenVale("accClick", false, this)
+            CallDetection.setSBoolenVale(CallDetection.MEDICAL_CLICK, true, this)
+            CallDetection.setSBoolenVale(CallDetection.ACCIDENT_CLICK, false, this)
         }
         if (v?.id == R.id.medical_sos) {
 
