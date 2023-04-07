@@ -49,6 +49,8 @@ class Watchout : AppCompatActivity(), View.OnClickListener {
         accidentSos1.setOnClickListener(this)
         securityCall1.setOnClickListener(this)
         supportActionBar?.hide()
+
+        CallDetection.setupPermissions(this)
         CallDetection.emergencyUiDetails(
             this,
             userRecieveData.userAuthkey.toString(),
