@@ -50,6 +50,9 @@ object CallDetection {
     const val ACCIDENT_USER_ID = "medical_user_id"
     const val ACCIDENT_RESPONDER_ID = "medical_responder_id"
     const val ACCIDENT_VEHICLE_ID = "medical_vehicle_id"
+    const val AUTH_KEY = "authkey"
+    const val LATITUDE = "latitude"
+    const val LONGITUDE = "longitude"
     const val SharedprefernceName = "UserData"
     const val MEDICAL_CLICK = "medClick"
     const val ACCIDENT_CLICK = "accClick"
@@ -71,27 +74,35 @@ object CallDetection {
                 .equals(TelephonyManager.EXTRA_STATE_IDLE)
         ) {
             showToast(context!!, "Call ended...")
+            Log.d("Call Detection Call End", "Call Ended---->>")
             if (getBoolenValue(MEDICAL_CLICK,context)==true) {
-                audioCallApi("1221117105526941",
+                audioCallApi(getStringValue(AUTH_KEY, context)!!,
                     getStringValue(MEDICAL_RESPONDER_ID, context)!!,
                     getStringValue(MEDICAL_USER_ID, context)!!,
                     getStringValue(MEDICAL_VEHICLE_ID, context)!!,
-                    getStringValue(MEDICAL_GROUP_ID, context)!!, "75.7873", "26.9124")
+                    getStringValue(MEDICAL_GROUP_ID, context)!!, getStringValue(LATITUDE, context)!!, getStringValue(LONGITUDE, context)!!)
+
                 Log.d("Call Detection Medical Responder Id", getStringValue(MEDICAL_RESPONDER_ID, context)!!)
                 Log.d("Call Detection Medical User Id", getStringValue(MEDICAL_USER_ID, context)!!)
                 Log.d("Call Detection Medical Vehicle Id", getStringValue(MEDICAL_VEHICLE_ID, context)!!)
                 Log.d("Call Detection Medical Group Id", getStringValue(MEDICAL_GROUP_ID, context)!!)
+                Log.d("get_your_auth_key", getStringValue(AUTH_KEY, context)!!)
+                Log.d("get_your_latitude", getStringValue(LATITUDE, context)!!)
+                Log.d("get_your_longitude", getStringValue(LONGITUDE, context)!!)
             }
             if (getBoolenValue(ACCIDENT_CLICK,context)==true) {
-                audioCallApi("1221117105526941",
+                audioCallApi(getStringValue(AUTH_KEY, context)!!,
                     getStringValue(ACCIDENT_RESPONDER_ID, context)!!,
                     getStringValue(ACCIDENT_USER_ID, context)!!,
                     getStringValue(ACCIDENT_VEHICLE_ID, context)!!,
-                    getStringValue(ACCIDENT_GROUP_ID, context)!!, "75.7873", "26.9124")
+                    getStringValue(ACCIDENT_GROUP_ID, context)!!, getStringValue(LATITUDE, context)!!, getStringValue(LONGITUDE, context)!!)
                 Log.d("Call Detection Accident-- Responder Id", getStringValue(ACCIDENT_RESPONDER_ID, context)!!)
                 Log.d("Call Detection Accident-- User Id", getStringValue(ACCIDENT_USER_ID, context)!!)
                 Log.d("Call Detection Accident-- Vehicle Id", getStringValue(ACCIDENT_VEHICLE_ID, context)!!)
                 Log.d("Call Detection Accident-- Group Id", getStringValue(ACCIDENT_GROUP_ID, context)!!)
+                Log.d("get_your_auth_key", getStringValue(AUTH_KEY, context)!!)
+                Log.d("get_your_latitude", getStringValue(LATITUDE, context)!!)
+                Log.d("get_your_longitude", getStringValue(LONGITUDE, context)!!)
             }
 
         } else if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE)
